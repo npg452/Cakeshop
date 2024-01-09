@@ -228,7 +228,7 @@ session_start();
 	<!-- CONTENT -->
 
 
-	<!-- <script src="script.js"></script> -->
+	
 
 </body>
 
