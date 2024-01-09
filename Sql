@@ -1,0 +1,599 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th1 09, 2024 lúc 04:24 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.1.17
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `cakeshop`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `binhluan`
+--
+
+CREATE TABLE `binhluan` (
+  `idbl` int(11) NOT NULL,
+  `hoten` varchar(200) NOT NULL,
+  `noidung` varchar(200) NOT NULL,
+  `thoigian` datetime NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `idsp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `binhluan`
+--
+
+INSERT INTO `binhluan` (`idbl`, `hoten`, `noidung`, `thoigian`, `iduser`, `idsp`) VALUES
+(8, '', 'bánh ngon lắm', '2023-11-26 00:15:21', 4, 14),
+(9, '', 'helllobb', '2023-11-26 00:16:12', 4, 1),
+(10, '', 'bánh hợp vị tôii', '2023-11-26 00:26:36', 5, 1),
+(18, '', 'bánh ngon ạ, tôi ăn thấy hợp vị hhh', '2023-11-28 21:25:35', 4, 6),
+(20, '', 'bánh ngon nhaa ạ', '2023-11-28 23:45:29', 7, 1),
+(21, '', 'ngonnn', '2023-11-29 00:44:43', 7, 6),
+(22, '', 'vị ngon', '2023-11-29 01:19:14', 4, 8),
+(24, '', 'huuuuuuuuu', '2023-11-30 09:26:32', 9, 7),
+(25, '', 'bánh ngon', '2023-12-04 01:37:21', 4, 10),
+(26, '', 'bánh ngon', '2023-12-05 23:09:39', 11, 7),
+(27, '', 'bánh ngon', '2023-12-05 23:11:20', 11, 3),
+(31, '', 'bánh ngon nhaaaaa', '2023-12-24 12:45:20', 17, 13),
+(32, '', 'bánh ngonnn', '2023-12-30 10:17:31', 54, 7),
+(33, '', 'bánh ngon lắm', '2024-01-01 20:29:46', 57, 12),
+(36, '', 'bánh ngon', '2024-01-05 21:59:57', 5, 25),
+(37, '', 'bánh ', '2024-01-06 13:05:10', 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `tensanpham` varchar(200) NOT NULL,
+  `gia` decimal(10,3) NOT NULL,
+  `giamgia` decimal(10,3) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `thanhtien` decimal(10,3) NOT NULL,
+  `image` text NOT NULL,
+  `idsp` int(11) NOT NULL,
+  `iduser` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cart`
+--
+
+INSERT INTO `cart` (`id`, `tensanpham`, `gia`, `giamgia`, `soluong`, `thanhtien`, `image`, `idsp`, `iduser`) VALUES
+(121, 'Bánh socola', 20.000, 0.000, 1, 40.000, 'banhsocola.png', 7, 6),
+(122, 'Bánh xốp', 15.000, 0.000, 1, 60.000, 'banhxop.png', 4, 6),
+(140, 'Bánh gạo vị ngọt dịu', 15.000, 0.000, 2, 30.000, 'banhgao.png', 1, 7),
+(141, 'Bánh gấu', 30.000, 0.000, 1, 90.000, 'banhgau.png', 9, 7),
+(142, 'Bánh sữa', 25.000, 15.000, 3, 90.000, 'banhsua.png', 8, 7),
+(143, 'Bánh yến mạch - gạo lứt', 20.000, 0.000, 1, 20.000, 'banhgaoluc.png', 3, 7),
+(144, 'Bánh xốp', 15.000, 0.000, 3, 60.000, 'banhxop.png', 4, 7),
+(145, 'Bánh trứng', 18.000, 9.000, 4, 45.000, 'banhtrung.png', 6, 7),
+(146, 'Bánh socola', 20.000, 0.000, 2, 40.000, 'banhsocola.png', 7, 7),
+(159, 'Bánh gấu', 30.000, 0.000, 2, 90.000, 'banhgau.png', 9, 8),
+(160, 'Bánh kem cherry', 120.000, 80.000, 1, 80.000, 'banhkemcherry.jpg', 11, 8),
+(166, 'Bánh quy', 25.000, 0.000, 2, 25.000, 'banhquy.png', 5, 7),
+(178, 'Bánh yến mạch - mè đen', 23.000, 15.000, 1, 45.000, 'banhyenmach.png', 2, 1),
+(179, 'Bánh yến mạch - mè đen', 23.000, 15.000, 1, 45.000, 'banhyenmach.png', 2, 11);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitietdonhang`
+--
+
+CREATE TABLE `chitietdonhang` (
+  `idctdh` int(11) NOT NULL,
+  `iddh` int(11) DEFAULT NULL,
+  `idsp` int(11) DEFAULT NULL,
+  `soluong` int(11) DEFAULT NULL,
+  `gia` decimal(10,3) DEFAULT NULL,
+  `ngaydathang` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietdonhang`
+--
+
+INSERT INTO `chitietdonhang` (`idctdh`, `iddh`, `idsp`, `soluong`, `gia`, `ngaydathang`) VALUES
+(10, 10, 3, 1, 100.000, '2023-12-02'),
+(11, 10, 2, 2, 30.000, '2023-12-02'),
+(12, 11, 4, 3, 45.000, '2023-12-02'),
+(13, 11, 2, 2, 30.000, '2023-12-02'),
+(14, 11, 11, 1, 80.000, '2023-12-02'),
+(25, 16, 9, 2, 60.000, '2023-12-03'),
+(26, 16, 11, 1, 80.000, '2023-12-03'),
+(27, 17, 7, 2, 40.000, '2023-12-03'),
+(28, 17, 9, 3, 90.000, '2023-12-03'),
+(29, 18, 6, 5, 45.000, '2023-12-03'),
+(34, 21, 7, 2, 40.000, '2023-12-03'),
+(35, 21, 4, 1, 15.000, '2023-12-03'),
+(42, 25, 5, 3, 75.000, '2023-12-04'),
+(44, 27, 1, 2, 30.000, '2023-12-04'),
+(45, 27, 9, 1, 30.000, '2023-12-04'),
+(46, 27, 8, 3, 45.000, '2023-12-04'),
+(47, 27, 3, 1, 20.000, '2023-12-04'),
+(48, 27, 4, 3, 45.000, '2023-12-04'),
+(49, 27, 6, 4, 36.000, '2023-12-04'),
+(50, 27, 7, 2, 40.000, '2023-12-04'),
+(55, 33, 3, 1, 20.000, '2023-12-04'),
+(56, 34, 4, 1, 15.000, '2023-12-04'),
+(57, 35, 1, 2, 30.000, '2023-12-05'),
+(58, 35, 11, 1, 80.000, '2023-12-05'),
+(59, 35, 7, 3, 60.000, '2023-12-05'),
+(60, 36, 12, 1, 100.000, '2023-12-06'),
+(61, 36, 9, 2, 60.000, '2023-12-06'),
+(62, 36, 4, 4, 60.000, '2023-12-06'),
+(63, 37, 5, 2, 50.000, '2023-12-06'),
+(64, 38, 11, 1, 80.000, '2023-12-06'),
+(65, 38, 4, 3, 45.000, '2023-12-06'),
+(66, 38, 7, 2, 40.000, '2023-12-06'),
+(67, 39, 2, 3, 45.000, '2023-12-08'),
+(68, 39, 8, 1, 15.000, '2023-12-08'),
+(72, 42, 3, 2, 40.000, '2023-12-08'),
+(73, 43, 6, 7, 63.000, '2023-12-13'),
+(74, 43, 13, 2, 240.000, '2023-12-13'),
+(75, 43, 1, 4, 60.000, '2023-12-13'),
+(76, 44, 1, 3, 45.000, '2023-12-13'),
+(77, 45, 18, 2, 60.000, '2023-12-13'),
+(78, 45, 13, 1, 120.000, '2023-12-13'),
+(79, 46, 7, 2, 40.000, '2023-12-13'),
+(80, 46, 4, 1, 15.000, '2023-12-13'),
+(81, 46, 2, 3, 45.000, '2023-12-13'),
+(82, 46, 11, 1, 80.000, '2023-12-13'),
+(83, 46, 3, 2, 40.000, '2023-12-13'),
+(84, 46, 9, 3, 90.000, '2023-12-13'),
+(85, 47, 1, 3, 45.000, '2023-12-24'),
+(86, 47, 4, 2, 30.000, '2023-12-24'),
+(87, 47, 8, 1, 15.000, '2023-12-24'),
+(88, 47, 13, 2, 240.000, '2023-12-24'),
+(89, 48, 4, 3, 45.000, '2023-12-30'),
+(90, 48, 7, 1, 20.000, '2023-12-30'),
+(91, 48, 12, 2, 200.000, '2023-12-30'),
+(92, 49, 6, 8, 72.000, '2023-12-30'),
+(93, 53, 4, 4, 60.000, '2023-12-30'),
+(95, 55, 11, 1, 80.000, '2023-12-30'),
+(96, 58, 3, 1, 20.000, '2023-12-30'),
+(98, 71, 8, 1, 15.000, '2023-12-30'),
+(99, 73, 3, 1, 20.000, '2023-12-30'),
+(100, 74, 8, 1, 15.000, '2023-12-30'),
+(101, 75, 8, 1, 15.000, '2023-12-30'),
+(102, 76, 10, 1, 100.000, '2023-12-30'),
+(103, 78, 9, 1, 30.000, '2023-12-30'),
+(104, 79, 5, 2, 50.000, '2023-12-31'),
+(105, 79, 9, 3, 90.000, '2023-12-31'),
+(106, 79, 13, 1, 120.000, '2023-12-31'),
+(107, 79, 1, 2, 30.000, '2023-12-31'),
+(108, 80, 5, 4, 100.000, '2023-12-31'),
+(109, 80, 6, 5, 45.000, '2023-12-31'),
+(110, 80, 13, 2, 240.000, '2023-12-31'),
+(111, 81, 7, 2, 40.000, '2023-12-31'),
+(112, 81, 9, 3, 90.000, '2023-12-31'),
+(113, 81, 12, 2, 200.000, '2023-12-31'),
+(114, 81, 4, 3, 45.000, '2023-12-31'),
+(115, 82, 9, 3, 90.000, '2024-01-01'),
+(116, 82, 10, 1, 100.000, '2024-01-01'),
+(117, 83, 8, 6, 90.000, '2024-01-01'),
+(118, 84, 25, 3, 48.000, '2024-01-01'),
+(119, 85, 23, 5, 40.000, '2024-01-01'),
+(120, 85, 24, 1, 150.000, '2024-01-01'),
+(121, 85, 26, 4, 56.000, '2024-01-01'),
+(122, 86, 4, 4, 60.000, '2024-01-02'),
+(123, 86, 12, 1, 100.000, '2024-01-02'),
+(124, 87, 25, 2, 32.000, '2024-01-05'),
+(125, 87, 22, 3, 90.000, '2024-01-05'),
+(126, 88, 1, 2, 30.000, '2024-01-06'),
+(127, 88, 3, 1, 20.000, '2024-01-06');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `danhmuc`
+--
+
+CREATE TABLE `danhmuc` (
+  `id` int(11) NOT NULL,
+  `tendanhmuc` varchar(50) NOT NULL,
+  `image` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `danhmuc`
+--
+
+INSERT INTO `danhmuc` (`id`, `tendanhmuc`, `image`) VALUES
+(1, 'Bánh Mì', 'banhmi.jpg'),
+(2, 'Bánh Ngọt', 'banhngot.jpg'),
+(3, 'Bánh Kem', 'banhtrung.png');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `donhang`
+--
+
+CREATE TABLE `donhang` (
+  `iddh` int(11) NOT NULL,
+  `iduser` int(11) DEFAULT NULL,
+  `ten` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `sdt` varchar(255) DEFAULT NULL,
+  `diachi` varchar(255) DEFAULT NULL,
+  `ghichu` varchar(255) DEFAULT NULL,
+  `ngaydathang` date DEFAULT NULL,
+  `ngaygiaohang` datetime DEFAULT NULL,
+  `phuongthucthanhtoan` varchar(255) DEFAULT NULL,
+  `tongtien` decimal(10,3) DEFAULT NULL,
+  `trangthai` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `donhang`
+--
+
+INSERT INTO `donhang` (`iddh`, `iduser`, `ten`, `email`, `sdt`, `diachi`, `ghichu`, `ngaydathang`, `ngaygiaohang`, `phuongthucthanhtoan`, `tongtien`, `trangthai`) VALUES
+(10, 4, 'Trung Hiếu', 'ttth20@gmail.com', '0876542864', '278 Ngũ Hành Sơn', '', '2023-11-29', '2023-11-29 15:20:55', 'Thanh toán khi nhận hàng', 130.000, 'Đã giao'),
+(11, 5, 'Trà My', 'tramy356@gmail.com', '0647583457', '102 Núi Thành, Hải Châu', '', '2023-12-02', '2023-12-02 14:52:15', 'Thanh toán khi nhận hàng', 155.000, 'Đã giao'),
+(16, 8, 'Khánh Nam', 'khahnam26_8@gmail.com', '0947324819', '74 Lê Thiện Trị', '', '2023-12-03', '2023-12-03 14:52:24', 'Thanh toán khi nhận hàng', 140.000, 'Đã giao'),
+(17, 5, 'Trà My', 'tramy356@gmail.com', '0647583457', '103 Núi Thành, Hải Châu', '', '2023-12-03', '2023-12-03 14:52:31', 'Thanh toán khi nhận hàng', 130.000, 'Đã giao'),
+(18, 4, 'Trung Hiếu', 'ttth20@gmail.com', '0876542864', '278 Ngũ Hành Sơn', '', '2023-12-03', NULL, 'Thanh toán khi nhận hàng', 45.000, 'Đã hủy đơn hàng'),
+(21, 9, 'Đức đz', 'vanducdz@gmail.com', '0355091787', '55 Ngũ Hành Sơn', '', '2023-12-03', '2024-01-01 20:32:09', 'Thanh toán khi nhận hàng', 55.000, 'Đã giao'),
+(25, 4, 'Trung Hiếu', 'ttth20@gmail.com', '0876542864', '278 Ngũ Hành Sơn', '', '2023-12-04', '2023-12-04 14:50:51', 'Thanh toán khi nhận hàng', 75.000, 'Đã giao'),
+(27, 7, 'Quỳnh Như', 'quynhu325@gmail.com', '0345872469', '105 Điện Biên Phủ', '', '2023-12-04', '2024-01-01 20:32:17', 'Thanh toán khi nhận hàng', 246.000, 'Đã giao'),
+(33, 10, 'Phương Phương', 'ppp298@gmail.com', '0647981547', '123 Lê Văn Hiến, Đà Nẵng', 'giao trước 10h sáng', '2023-12-04', '2023-12-04 14:52:48', 'Thanh toán khi nhận hàng', 20.000, 'Đã giao'),
+(34, 10, 'Phương Phương', 'ppp298@gmail.com', '0647981547', '263 Nguyễn Hữu Thọ', 'giao trước 10h sáng', '2023-12-04', NULL, 'Thanh toán khi nhận hàng', 15.000, 'Đã hủy đơn hàng'),
+(35, 11, 'Thanh Phương', 'ptt_356@gmail.com', '0874687239', '202 Nguyễn Văn Linh', 'giao hàng sau 2h chiều giúp tôi', '2023-12-05', '2023-12-05 14:52:53', 'Thanh toán khi nhận hàng', 170.000, 'Đã giao'),
+(36, 12, 'Tấn Đạt', 'tandat231@gmail.com', '0734556472', '218 Huỳnh Văn Nghệ', 'đạt điên không tưởng', '2023-12-06', '2023-12-06 14:52:57', 'Thanh toán khi nhận hàng', 220.000, 'Đã giao'),
+(37, 12, 'Tấn Đạt', 'tandat231@gmail.com', '0734556472', '218 Huỳnh Văn Nghệ', '', '2023-12-06', '2023-12-06 16:14:23', 'Thanh toán khi nhận hàng', 50.000, 'Đã giao'),
+(38, 3, 'Linh Chi', 'linhchi231@gmail.com', '0379546823', '28 Mai Đăng Chơn', '', '2023-12-06', '2023-12-06 17:05:41', 'Thanh toán khi nhận hàng', 165.000, 'Đã giao'),
+(39, 14, 'Thanh Phương', 'pnn123@gmail.com', '0974624687', '56 Ngũ Hành Sơn', 'giao trước 10h sáng mai', '2023-12-08', NULL, 'Thanh toán khi nhận hàng', 60.000, 'Đã xác nhận'),
+(42, 14, 'Thanh Phương', 'pnn123@gmail.com', '0975647259', '56 Ngũ Hành Sơn', '', '2023-12-08', NULL, 'Thanh toán khi nhận hàng', 40.000, 'Đã hủy đơn hàng'),
+(43, 2, 'Minh Tú', 'minhtu@gmail.com', '0975648721', '104 Ngũ Hành Sơn', '', '2023-12-13', NULL, 'Thanh toán khi nhận hàng', 363.000, 'Đã xác nhận'),
+(44, 2, 'Minh Tú', 'minhtu@gmail.com', '0975648721', '93 Trần Đại Nghĩa', '', '2023-12-13', '2023-12-13 12:06:35', 'Thanh toán khi nhận hàng', 45.000, 'Đã giao'),
+(45, 16, 'Trần Hường', 'tranhuong456@gmail.com', '0758642893', '102 Lê Thiện Trị', '', '2023-12-13', '2023-12-13 14:53:44', 'Thanh toán khi nhận hàng', 180.000, 'Đã giao'),
+(46, 9, 'Đức đz', 'vanducdz@gmail.com', '0355091787', '294 Tôn Đức Thắng', 'giao trước 2h chiều mai giúp tôi', '2023-12-13', '2023-12-13 15:53:58', 'Thanh toán khi nhận hàng', 310.000, 'Đã giao'),
+(47, 17, 'Ngọc Linh', 'ngocling254@gmail.com', '0354984352', '250 Trần Phú', '', '2023-12-24', NULL, 'Thanh toán khi nhận hàng', 330.000, 'Đã xác nhận'),
+(48, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng', 265.000, 'Đã hủy đơn hàng'),
+(49, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', '2023-12-31 14:41:17', 'Thanh toán khi nhận hàng', 72.000, 'Đã giao'),
+(53, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', '2023-12-31 14:44:52', 'Thanh toán khi nhận hàng', 60.000, 'Đã giao'),
+(55, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng', 80.000, 'Đã xác nhận'),
+(58, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '93 Trần Đại Nghĩa', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng', 20.000, 'Đang chuẩn bị đơn hàng'),
+(71, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Zalo Pay', 15.000, 'Đang giao hàng'),
+(72, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Zalo Pay', 15.000, 'Đang giao hàng'),
+(73, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng', 20.000, 'Đã xác nhận'),
+(74, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '55 Ngũ Hành Sơn', '', '2023-12-30', '2024-01-05 21:57:52', 'Thanh toán khi nhận hàng', 15.000, 'Đã giao'),
+(75, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng', 15.000, 'Đang chờ xác nhận'),
+(76, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng\r\n', 100.000, 'Đang chuẩn bị đơn hàng'),
+(78, 54, 'Phương Thảo', 'pthao27@gmail.com', '0678945483', '96 Hoàng Diệu', '', '2023-12-30', NULL, 'Thanh toán khi nhận hàng', 30.000, 'Đã xác nhận'),
+(79, 56, 'Bảo Nhật', 'bnhat11@gmail.com', '0975612486', '203 Phan Châu Trinh', '', '2023-12-31', '2024-01-05 21:58:00', 'Thanh toán khi nhận hàng', 290.000, 'Đã giao'),
+(80, 4, 'Trung Hiếu', 'ttth20@gmail.com', '0876542864', '278 Ngũ Hành Sơn', '', '2023-12-31', NULL, 'Thanh toán khi nhận hàng', 385.000, 'Đang chờ xác nhận'),
+(81, 5, 'Trà My', 'tramy356@gmail.com', '0647583457', '102 Núi Thành, Hải Châu', '', '2023-12-31', NULL, 'Thanh toán khi nhận hàng', 375.000, 'Đã xác nhận'),
+(82, 57, 'Châu Giang', 'chaugiang123@gmail.com', '0975648326', '55 Điện Biên Phủ', '', '2024-01-01', '2024-01-05 21:57:56', 'Thanh toán khi nhận hàng', 190.000, 'Đã giao'),
+(83, 2, 'Minh Tú', 'minhtu@gmail.com', '0975648721', '103 Nguyễn Văn Linh', '', '2024-01-01', NULL, 'Thanh toán khi nhận hàng', 90.000, 'Đang chờ xác nhận'),
+(84, 2, 'Minh Tú', 'minhtu@gmail.com', '0975648721', '102 Lê Thiện Trị', '', '2024-01-01', NULL, 'Thanh toán khi nhận hàng', 48.000, 'Đang chuẩn bị đơn hàng'),
+(85, 58, 'Titi', 'titi123@gmail.com', '0573592857', '263 Nguyễn Hữu Thọ', '', '2024-01-01', NULL, 'Thanh toán khi nhận hàng', 246.000, 'Đang giao hàng'),
+(86, 5, 'Trà My', 'tramy356@gmail.com', '0647583457', '102 Núi Thành, Hải Châu', '', '2024-01-02', '2024-01-05 21:57:34', 'Thanh toán khi nhận hàng', 160.000, 'Đã giao'),
+(87, 5, 'Trà My', 'tramy356@gmail.com', '0647583457', '102 Núi Thành, Hải Châu', '', '2024-01-05', NULL, 'Thanh toán khi nhận hàng', 122.000, 'Đang chờ xác nhận'),
+(88, 4, 'Trung Hiếu', 'ttth20@gmail.com', '0876542864', '278 Ngũ Hành Sơn', '', '2024-01-06', NULL, 'Thanh toán khi nhận hàng', 50.000, 'Đã xác nhận');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `phanhoi`
+--
+
+CREATE TABLE `phanhoi` (
+  `id` int(11) NOT NULL,
+  `ten` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `sdt` varchar(12) NOT NULL,
+  `noidung` text NOT NULL,
+  `iduser` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `phanhoi`
+--
+
+INSERT INTO `phanhoi` (`id`, `ten`, `email`, `sdt`, `noidung`, `iduser`) VALUES
+(3, 'Khánh Nam', 'khahnam26_8@gmail.com', '0947324819', 'helloo, bánh của shop rất ngon', 8),
+(5, 'Trà My', 'tramy356@gmail.com', '0647583457', '', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `sanpham`
+--
+
+CREATE TABLE `sanpham` (
+  `id` int(11) NOT NULL,
+  `tensanpham` varchar(50) NOT NULL,
+  `gia` int(11) NOT NULL,
+  `giamgia` int(11) NOT NULL,
+  `sale` varchar(11) NOT NULL,
+  `soluong` int(11) NOT NULL,
+  `soluongconlai` int(11) NOT NULL,
+  `mota` text NOT NULL,
+  `image` text NOT NULL,
+  `iddanhmuc` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sanpham`
+--
+
+INSERT INTO `sanpham` (`id`, `tensanpham`, `gia`, `giamgia`, `sale`, `soluong`, `soluongconlai`, `mota`, `image`, `iddanhmuc`) VALUES
+(1, 'Bánh gạo vị ngọt dịu', 15000, 0, '0', 20, 4, '<p>Bánh gạo vị ngọt dịu&nbsp;được chế biến từ những hạt gạo thơm ngon tuyển chọn ở các vùng lúa gạo đặc sản Việt Nam.</p><p>Sản phẩm không dùng phụ gia tổng hợp, chất tạo màu, chất bảo quản, không chiên qua dầu nên giữ được hương thơm của lúa gạo.&nbsp;</p><p>Đây còn là loại bánh không chứa cholesterol, ít béo nên thích hợp cho cả người ăn kiêng. Sản phẩm bảo vệ sức khỏe người tiêu dùng.</p>', 'banhgao.png', 1),
+(2, 'Bánh yến mạch - mè đen', 23000, 15000, '32%', 10, 0, '<p>Bánh yến mạch + mè đen là sản phẩm nhập khẩu từ Malaysia.&nbsp;</p><p>Bánh giòn vị thơm ngon, bùi béo. Yến mạch là một loại ngũ cốc rất giàu đạm (protein), đặc biệt chứa rất nhiều chất xơ hòa tan, thường xuyên ăn yến mạch giúp ngăn ngừa bệnh tim, làm giảm chelesterol, làm chậm sự hấp thu sau bữa ăn.</p>', 'banhyenmach.png', 1),
+(3, 'Bánh yến mạch - gạo lứt', 20000, 0, '0', 24, 15, '<p>Bánh yến mạch + gạo lứt là sản phẩm nhập khẩu từ Malaysia.&nbsp;</p><p>Bánh giòn vị thơm ngon, bùi béo. Yến mạch là một loại ngũ cốc rất giàu đạm (protein), đặc biệt chứa rất nhiều chất xơ hòa tan, thường xuyên ăn yến mạch giúp ngăn ngừa bệnh tim, làm giảm chelesterol, làm chậm sự hấp thu sau bữa ăn.</p>', 'banhgaoluc.png', 1),
+(4, 'Bánh xốp', 15000, 0, '0', 50, 18, '<p>Bánh xốp ống với lớp vỏ ngoài cực giòn tan, đầy đặn nhân Vani.&nbsp;</p><p>Sữa hòa quyện mang đến vị ngon hài hòa, độc đáo</p>', 'banhxop.png', 1),
+(5, 'Bánh sừng trâu', 25000, 0, '0', 34, 23, '<p>Bánh quy trứng muối với vị mặn mặn, giòn giòn của lớp vỏ bánh thơm ngon, bên trong là loại kem mạch nha có vị trứng muối lạ miệng, hấp dẫn ngay từ những miếng đầu tiên.<br><br>Đây là sản phẩm bánh nhập khẩu cao cấp trực tiếp từ Taiwan.<br><br>Gói bánh to 180g gồm 28 cái nhỏ bên trong, tiện cho việc sử dụng và bảo quản.</p>', 'banhquy.png', 1),
+(6, 'Bánh trứng', 18000, 9000, '50%', 50, 21, '<p>Lớp bánh trứng giòn tan, nồng nàn hương vị<br>Độ ngọt vừa phải dễ dàng kết hợp các loại trà, nước<br>Bao bì tiện lợi, đẹp mắt, thích hợp làm quà tặng ngày Tết<br>Nguyên liệu chọn lọc, dây chuyền sản xuất hiện đại</p>', 'banhtrung.png', 2),
+(7, 'Bánh socola', 20000, 0, '0', 26, 10, '<p>Hương vị socola thơm ngon hấp dẫn<br>Đảm bảo vệ sinh an toàn thực phẩm<br>Bổ sung nguồn dinh dưỡng dồi dào</p>', 'banhsocola.png', 2),
+(8, 'Bánh sữa', 25000, 15000, '40%', 34, 20, '<p>Sản phẩm tinh túy đặc biệt của Lothamilk<br>Được cô đặc từ nguồn sữa bò tươi thuần khiết nguyên chất<br>Hàm lượng dinh dưỡng trong 1 túi bánh sữa tương đương với 1/2 lít sữa tươi<br>Tiện lợi, thơm ngon, phù hợp với mọi lứa tuổi</p>', 'banhsua.png', 2),
+(9, 'Bánh gấu', 30000, 0, '0', 45, 24, '<p>Thơm ngon, giòn béo<br><br>Nhiều dưỡng chất quý giá từ chùm ngây tốt cho sức khoẻ<br><br>Món ăn bổ dưỡng cho cả người lớn và trẻ em<br><br>Sản xuất theo công nghệ Nhật Bản<br><br>Đáp ứng 4 tiêu chí: Không Cholesterol; Không chất bảo quản; Không chiên qua dầu; Không phẩm màu</p>', 'banhgau.png', 2),
+(10, 'Bánh sinh nhật', 100000, 0, '0', 20, 18, '<p><strong>Hương Vị Tuyệt Vời:</strong> Bánh được làm từ nguyên liệu cao cấp, mang lại hương vị tinh tế và thơm ngon đặc trưng.</p><p><strong>Bề Mặt Mềm Mại:</strong> Bánh có lớp bề mặt mềm mại và mịn màng, tạo cảm giác thoải mái khi thưởng thức.</p><p><strong>Hoa Văn Tinh Xảo:</strong> Hoa văn được tạo ra bằng kem đường, tạo nên một kiệt tác nghệ thuật trên bề mặt bánh, tăng thêm vẻ sang trọng.</p><p><strong>Nguyên Liệu Chất Lượng Cao:</strong> Chúng tôi sử dụng nguyên liệu chất lượng cao, không chứa chất béo trans và đảm bảo an toàn vệ sinh thực phẩm.</p><p><strong>Phù Hợp Mọi Dịp:</strong> Bánh thích hợp cho mọi dịp, từ các buổi tiệc sinh nhật, kỷ niệm đặc biệt cho đến những dịp quan trọng trong cuộc sống.</p>', 'banhsinhnhat.jpg', 3),
+(11, 'Bánh kem cherry', 120000, 80000, '33%', 80, 74, '<figure class=\"table\"><table><tbody><tr><td><p><br><strong>Hương Vị Tuyệt Vời:</strong> Bánh được làm từ nguyên liệu cao cấp, mang lại hương vị tinh tế và thơm ngon đặc trưng.</p><p><strong>Bề Mặt Mềm Mại:</strong> Bánh có lớp bề mặt mềm mại và mịn màng, tạo cảm giác thoải mái khi thưởng thức.</p><p><strong>Hoa Văn Tinh Xảo:</strong> Hoa văn được tạo ra bằng kem đường, tạo nên một kiệt tác nghệ thuật trên bề mặt bánh, tăng thêm vẻ sang trọng.</p><p><strong>Nguyên Liệu Chất Lượng Cao:</strong> Chúng tôi sử dụng nguyên liệu chất lượng cao, không chứa chất béo trans và đảm bảo an toàn vệ sinh thực phẩm.</p><p><strong>Phù Hợp Mọi Dịp:</strong> Bánh thích hợp cho mọi dịp, từ các buổi tiệc sinh nhật, kỷ niệm đặc biệt cho đến những dịp quan trọng trong cuộc sống.</p></td></tr></tbody></table></figure>', 'banhkemcherry.jpg', 3),
+(12, 'Bánh kem cheese', 150000, 100000, '33%', 10, 4, '<p><strong>Hương Vị Tuyệt Vời:</strong> Bánh được làm từ nguyên liệu cao cấp, mang lại hương vị tinh tế và thơm ngon đặc trưng.</p><p><strong>Bề Mặt Mềm Mại:</strong> Bánh có lớp bề mặt mềm mại và mịn màng, tạo cảm giác thoải mái khi thưởng thức.</p><p><strong>Hoa Văn Tinh Xảo:</strong> Hoa văn được tạo ra bằng kem đường, tạo nên một kiệt tác nghệ thuật trên bề mặt bánh, tăng thêm vẻ sang trọng.</p><p><strong>Nguyên Liệu Chất Lượng Cao:</strong> Chúng tôi sử dụng nguyên liệu chất lượng cao, không chứa chất béo trans và đảm bảo an toàn vệ sinh thực phẩm.</p><p><strong>Phù Hợp Mọi Dịp:</strong> Bánh thích hợp cho mọi dịp, từ các buổi tiệc sinh nhật, kỷ niệm đặc biệt cho đến những dịp quan trọng trong cuộc sống.</p>', 'banhkemphomai.jpg', 3),
+(13, 'Bánh kem con thỏ', 120000, 0, '0', 16, 8, '<p>&nbsp;</p><figure class=\"table\"><table><tbody><tr><td><p><br><strong>Hương Vị Tuyệt Vời:</strong> Bánh được làm từ nguyên liệu cao cấp, mang lại hương vị tinh tế và thơm ngon đặc trưng.</p><p><strong>Bề Mặt Mềm Mại:</strong> Bánh có lớp bề mặt mềm mại và mịn màng, tạo cảm giác thoải mái khi thưởng thức.</p><p><strong>Hoa Văn Tinh Xảo:</strong> Hoa văn được tạo ra bằng kem đường, tạo nên một kiệt tác nghệ thuật trên bề mặt bánh, tăng thêm vẻ sang trọng.</p><p><strong>Nguyên Liệu Chất Lượng Cao:</strong> Chúng tôi sử dụng nguyên liệu chất lượng cao, không chứa chất béo trans và đảm bảo an toàn vệ sinh thực phẩm.</p><p><strong>Phù Hợp Mọi Dịp:</strong> Bánh thích hợp cho mọi dịp, từ các buổi tiệc sinh nhật, kỷ niệm đặc biệt cho đến những dịp quan trọng trong cuộc sống.</p></td></tr></tbody></table></figure>', 'bkemconvit.jpg', 3),
+(14, 'Bánh su kem', 25000, 0, '0', 13, 13, '<p><strong>Vỏ Bánh Su Giòn Tan:</strong> Lớp vỏ bánh su được làm mỏng nhẹ, giòn tan khi ăn, tạo ra trải nghiệm thưởng thức thú vị.</p><p><strong>Kem Tươi Béo Ngậy:</strong> Kem tươi được làm từ nguyên liệu tươi ngon, mang lại hương vị béo ngậy và kem lạnh mềm mại.</p><p><strong>Sự Hòa Quyện Hoàn Hảo:</strong> Khi bạn cắn phải, bạn sẽ cảm nhận được sự hòa quyện tuyệt vời giữa vị ngọt của kem và giòn tan của vỏ bánh su.</p><p><strong>Đa Dạng Hương Vị:</strong> Bánh có sẵn trong nhiều hương vị phong phú như Vanilla, Sô cô la, Dâu, v.v., đáp ứng đa dạng sở thích của khách hàng.</p><p><strong>Thích Hợp Cho Mọi Dịp:</strong> Bánh su kem là lựa chọn lý tưởng cho các buổi tiệc, sinh nhật, hay đơn giản là để thưởng thức tại nhà.</p>', 'banhsukem.jpg', 2),
+(18, 'Bánh bơ trứng', 30000, 0, '', 10, 8, '<ul><li><strong>Bánh Bơ Trứng </strong>được sản xuất từ công nghệ mới kết hợp cùng dây chuyền sản xuất hiện đại, bánh quy bơ trứng làm từ các nguyên liệu chất lượng được chọn lọc kỹ lưỡng mang đến cho người dùng món bánh quy bơ trứng thơm ngon, hấp dẫn và phù hợp với mọi lứa tuổi.</li><li>Bánh cung cấp các chất dinh dưỡng thiết yếu, tốt cho sức khỏe con người.</li><li>Đây là một trong những món ăn vặt được nhiều người ưa chuộng.</li><li>Sản phẩm không chứa đường hóa học, không sử dụng các hóa chất độc hại và đã qua kiểm nghiệm đảm bảo an toàn cho sức khỏe của người dùng.</li><li>Sản phẩm được đóng hộp đẹp mắt, tiện lợi, dễ dàng sử dụng cũng như trong việc bảo quản. Bạn có thể dễ dàng mang theo trong những chuyến đi dã ngoại, dùng trong văn phòng hoặc tặng, biếu trong các dịp lễ tết.</li></ul>', 'banhbo.png', 2),
+(22, 'Bánh mì bơ tỏi', 30000, 0, '', 50, 50, '<p><strong>Vị Thơm Tỏi Đặc Trưng:</strong> Bơ tỏi được chế biến một cách tỉ mỉ, mang lại vị thơm đặc trưng của tỏi tươi ngon.</p><p><strong>Lớp Vỏ Bánh Giòn Tan:</strong> Vỏ bánh được nướng giòn tan, tạo nên một trải nghiệm ăn ngon từ đầu đến cuối.</p><p><strong>Nhân Bơ Mềm Mại:</strong> Nhân bơ bên trong bánh mì mềm mại và béo ngậy, tạo ra sự kết hợp tuyệt vời giữa lớp vỏ giòn và nhân mềm.</p><p><strong>Hương Vị Đa Dạng:</strong> Bánh mì bơ tỏi phù hợp cho mọi khẩu vị, có thể ăn kèm với các loại phô mai, thịt, salad, hoặc thưởng thức riêng lẻ.</p><p><strong>Phù Hợp Cho Bữa Ăn Sáng hoặc Ăn Kèm:</strong> Là sự lựa chọn hoàn hảo cho bữa sáng nhanh chóng hoặc làm bữa ăn ngon miệng hơn với gia đình và bạn bè.</p>', 'banhmibotoi.jpg', 1),
+(23, 'Bánh Tart Trứng', 8000, 0, '', 50, 45, '<p><strong>Vỏ Bánh Tart Giòn Tan:</strong> Lớp vỏ bánh tart được làm từ bột mỳ chọn lọc, nướng giòn tan, tạo nên một cảm giác thú vị khi cắn phải.</p><p><strong>Nhân Trứng Béo Ngậy:</strong> Nhân trứng được chế biến một cách tinh tế, có hương vị đặc trưng của trứng và độ béo ngậy hoàn hảo.</p><p><strong>Hương Vị Ngọt Ngào:</strong> Sự kết hợp của độ ngọt nhẹ từ nhân trứng và vị giòn từ vỏ bánh tạo nên một hương vị đặc sắc và khó cưỡng.</p><p><strong>Dáng Vẻ Sang Trọng:</strong> Bánh tart được thiết kế với hình dáng đẹp mắt, tinh tế, là điểm nhấn hoàn hảo cho bàn tiệc hoặc quà tặng sang trọng.</p><p><strong>Thích Hợp Cho Mọi Dịp:</strong> Bánh tart trứng là lựa chọn hoàn hảo cho bữa trưa nhẹ, tiệc trà, hay bất kỳ dịp lễ nào.</p>', 'banhtasttrung.jpg', 2),
+(24, 'Bông lan trứng muối', 150000, 0, '', 50, 49, '<p><strong>Hương Vị Trứng Thơm Ngon:</strong> Bánh bông lan được làm từ trứng chất lượng cao, mang lại hương vị trứng thơm ngon, tạo nên lớp bánh mềm mại và ẩm.</p><p><strong>Hương Muối Nhẹ Nhàng:</strong> Sự thêm vào hương muối nhẹ nhàng làm tăng thêm chiều sâu và phức tạp cho hương vị, tạo nên sự kết hợp độc đáo.</p><p><strong>Kết Cấu Mềm Mại:</strong> Bánh bông lan có kết cấu mềm mại, nhẹ nhàng trải qua từng miếng bánh, làm bạn cảm thấy hòa mình trong hương vị tinh tế.</p><p><strong>Thích Hợp Cho Mọi Dịp:</strong> Bánh phù hợp cho mọi dịp, từ những buổi trà nhẹ nhàng đến những bữa tiệc quan trọng.</p><p><strong>Hình Dáng Đẹp Mắt:</strong> Bánh được làm theo hình dáng chăm sóc tỉ mỉ, tạo nên một sản phẩm thú vị không chỉ về hương vị mà còn về thị giác.</p>', 'bltm.jpg', 3),
+(25, 'Bánh Panna Cotta', 16000, 0, '', 50, 47, '<p><strong>Kết Cấu Mềm Mại:</strong> Bánh Panna Cotta có kết cấu mềm mại, nhẹ nhàng trượt qua lưỡi, tạo cảm giác êm dịu khi thưởng thức.</p><p><strong>Hương Vanilla Nồng Nàn:</strong> Sử dụng vanilla cao cấp để tạo ra hương vị nồng nàn, đặc trưng của bánh Panna Cotta Ý.</p><p><strong>Sự Hòa Quyện Hoàn Hảo:</strong> Sự kết hợp giữa kem tươi và hương vanilla tạo nên một hòa quyện hài hòa, không quá ngọt ngào, giữ cho khẩu vị luôn cân bằng.</p><p><strong>Trang Trí Tinh Tế:</strong> Bánh được trang trí tinh tế với một lớp gelatin mỏng, tạo điểm nhấn estetik và thêm phần hấp dẫn.</p><p><strong>Phù Hợp Cho Mọi Dịp:</strong> Bánh Panna Cotta là lựa chọn hoàn hảo cho các bữa tiệc sang trọng, hoặc chỉ đơn giản là để thưởng thức một bữa tráng miệng nhẹ nhàng.</p>', 'pdct.jpg', 2),
+(26, ' Bánh Tiramisu', 14000, 0, '', 50, 46, '<p><strong>Lớp Dâu Tươi Ngon:</strong> Bánh được phủ lớp dâu tươi, mang lại hương vị tươi mới, ngọt ngon và chua chua nhẹ nhàng.</p><p><strong>Nhân Kem Cheese Mềm Mại:</strong> Nhân kem cheese được làm từ kem tươi, tạo nên lớp nhân mềm mại, béo ngậy và hòa quyện với vị dâu.</p><p><strong>Lớp Bánh Đặc Trưng:</strong> Lớp bánh (thường là bánh ladyfinger) được ngâm nhẹ trong hỗn hợp cà phê và nước dâu, tạo nên lớp bánh giòn, ngon miệng.</p><p><strong>Hương Vị Hòa Quyện:</strong> Sự kết hợp của vị ngọt ngon từ dâu, vị béo ngậy từ kem cheese và hương vị cà phê làm cho bánh trở nên hòa quyện và thú vị.</p><p><strong>Thích Hợp Cho Mọi Dịp:</strong> Bánh Tiramisu Hương Dâu và Kem Cheese là lựa chọn tuyệt vời cho các buổi tiệc, dịp lễ hoặc để thưởng thức trong những bữa trưa nhẹ nhàng.</p>', 'trm.jpg', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tintuc`
+--
+
+CREATE TABLE `tintuc` (
+  `id` int(11) NOT NULL,
+  `image` text NOT NULL,
+  `tieude` varchar(100) NOT NULL,
+  `ten` varchar(200) NOT NULL,
+  `mota` text NOT NULL,
+  `noidung` text NOT NULL,
+  `ngaydang` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tintuc`
+--
+
+INSERT INTO `tintuc` (`id`, `image`, `tieude`, `ten`, `mota`, `noidung`, `ngaydang`) VALUES
+(1, 'tt1.jpg', 'Phá cách với phiên bản bánh táo hình chiếc kẹo mút ai nhìn cũng mê', 'Cách làm bánh táo hình kẹo mút:', 'Nếu bạn muốn tìm một công thức bánh vừa mới lạ lại vừa ngon thì đây sẽ là một gợi ý không tệ chút nào. Bằng cách kết hợp các nguyên liệu, bạn sẽ có được chiếc bánh với nhân bên trong mềm và ngọt dịu. Hơn nữa, bánh còn được tạo hình giống như chiếc kẹo mút xinh xắn, đảm bảo nhìn thôi đã muốn thử ngay rồi đấy!', '<p>Bước 1:<br>- Đầu tiên, bạn hãy trộn đều táo, bột ngô, đường, muối và nước cốt chanh vào nhau.</p><p>Bước 2:<br>- Tiếp theo, hãy trộn đều hỗn hợp bột mì, đường, muối và bơ. Chúng ta cần nhào bột cho đến khi được khối bột nhuyễn mịn, không dính tay nhé!<br>- Sau đó, vo chúng thành khối tròn và để lên mặt thớt đã rắc một lớp áo bột.</p><p>Bước 3:<br>- Cán bột đều tay đến khi bột đạt độ mỏng khoảng 2mm.</p><p>Bước 4:<br>- Dùng dao cắt bột thành các đường thẳng song song cách nhau khoảng 1cm.</p><p>Bước 5:<br>- Giờ thì hãy khéo léo đan miếng bột đã cắt theo họa tiết xen kẽ nhau như thế này thôi nào.</p><p>Bước 6:<br>- Sau khi đan xong, bạn hãy dùng khuôn tròn (hoặc nắp sắt) để cắt bột thành những miếng tròn.</p><p>Bước 7:<br>- Hãy cắt thêm những miếng tròn từ phần bột cán mỏng không đan nữa nhé.</p><p>Bước 8:<br>- Tiếp theo, bạn hãy đặt que kẹo mút và chia đều nhân lên mặt miếng bột mịn.</p><p>Bước 9:<br>- Đặt miếng bột đã đan xen lên chúng và miết chặt phần viền để cố định bánh.</p><p>Bước 10:</p><p>- Cuối cùng, bạn chỉ cần dùng dĩa để tạo hình viền bánh và nướng ở nhiệt độ 180 trong 20 phút là xong.</p><p>Những chiếc bánh với hình dáng dễ thương thế này chắc hẳn sẽ là món quà mà ai cũng thích mê đó!</p><p>Cùng vào bếp và làm thử món bánh táo hình kẹo mút này nào.</p>', '2023-11-09'),
+(2, 'tt2.jpg', 'Bánh baguette tuyệt vời của Pháp', '', 'Hàng năm, Paris tổ chức một giải Grand Prix để trao vương miện cho chiếc baguette (bánh mỳ nhỏ và dài) ngon nhất thành phố - và trong những năm gần đây, những người chiến thắng là những thợ làm bánh có \'nguồn gốc\' ở xa nước Pháp', '<p>Đi dạo qua Paris vào buổi sáng thì điều đầu tiên bạn thấy là những dòng người ra khỏi các cửa hàng bánh địa phương để mua bánh ăn sáng. Đó là vì, trên khắp nước Pháp, dậy sớm và mua bánh baguette không chỉ là bản chất thứ hai; đó là một cách sống. Theo tổ chức Observatoire du Pain (vâng, Pháp tổ chức khoa học \'Quan sát bánh mỳ\'), người Pháp tiêu thụ 320 baguette mỗi giây - nghĩa là trung bình 1/2 baguette/1người/1ngày và 10 tỷ cái/năm.</p><p>Vậy, không ngạc nhiên là nước Pháp rất coi trọng baguette. Trên thực tế, vào tháng 4 hàng năm từ 1994, một ban giám khảo gồm các chuyên gia tập trung tại Paris để xét giải Le Grand Prix de la Baguette: một cuộc thi để xác định người làm baguette giỏi nhất thành phố.</p><p>Mỗi năm, khoảng 200 thợ làm bánh ở Paris tham gia cuộc thi, giao 2 chiếc baguette ngon nhất cho một hội đồng chuyên gia giám khảo vào buổi sáng. Các baguette được kiểm tra để đảm bảo rằng chúng có chiều dài từ 55-65cm và nặng từ 250-300g. Gần một nửa trong số hơn 400 baguette được tham gia cuộc thi đáp ứng các tiêu chí khắt khe này và chuyển sang vòng hai: đánh giá.</p><p>Ở vòng tiếp theo, ban giám khảo gồm 14 thành viên - gồm các nhà báo ẩm thực, người chiến thắng năm trước và một vài tình nguyện viên may mắn - sẽ phân tích các ổ bánh còn lại dựa trên 5 phạm trù khác nhau: độ nướng bánh, ngoại hình, mùi bánh, vị ngon và ruột bánh. Ruột baguette nên mềm nhưng không ẩm; đàn hồi, có các lỗ hổng lớn, không đều, cho thấy nó đã được lên men từ từ và phát triển hương thơm.</p><p>Nhà vô địch năm ngoái, Mahmoud M\'Seddi, là người chiến thắng trẻ nhất từ trước tới nay, ở tuổi 27. \"Tôi đã may mắn lớn lên trong một tiệm làm bánh,\" M\'Seddi kể khi anh dẫn tôi đi qua cạnh những chiếc bánh không đều, được tạo hình bằng tay, tại tiệm bánh mì M\'Seddi Moulins des Prés nhỏ của anh, ở quận 13. \"Tôi đã lớn lên cùng cha mẹ, trái ngược với những đứa trẻ được chăm sóc ở nhà trẻ hoặc có vú em. Tôi luôn ở trong tiệm bánh mì.</p><p>Niềm đam mê làm bánh của M\'Seddi là rõ ràng và bắt nguồn từ người cha. Xuất thân từ Tunisia, cha của M\'Seddi đến Pháp vào cuối những năm 1980 khi theo đuổi bằng cấp về kỹ thuật điện. \"Trong kỳ nghỉ ở trường, ông đến Paris làm việc tại một tiệm bánh để kiếm tiền tiêu vặt, và thấy yêu nghề nướng bánh mì. Ông bỏ dở việc học. Thay vào đó, ông bắt đầu làm nghề bánh mì.\" M\'Seddi kể lại.</p><p>Khi anh giành chiến thắng vào năm ngoái, Mahmoud M\'Seddi là người chiến thắng trẻ nhất cho đến nay của cuộc thi Grand Prix.</p><p>M\'Seddi nhớ những kỷ niệm đẹp nhìn bố nặn bột nhào thành các thanh baguette hình dùi cui và làm việc cùng ông khi còn nhỏ.</p><p>\"Như một nhà ảo thuật,\" anh nhớ lại. \"Tôi đã làm như vậy khi còn nhỏ, trộn các thứ với nhau. Tôi rất thích làm điều đó.\"</p><p>Mặc dù mẹ anh đã cảnh báo anh không nên trở thành một thợ làm bánh chuyên nghiệp vì phải làm nhiều và vất vả, và không có thời gian nghỉ lễ, M\'Seddi vẫn quyết định tham gia công việc kinh doanh của gia đình. M\'Seddi và cha hiện đang điều hành 3 tiệm bánh ở Paris: Boulangerie MỉSeddi Moulin des Près, nằm ở phía nam của khu phố Butte aux Cailles đẹp như tranh; Boulangerie Maison M\'Seddi Tolbiac, cách đó vài trăm mét; và Boulangerie Maison M\'Seddi ở quận 14.</p><p>Mỗi sáng M\'Seddi thức dậy lúc 4 giờ để bắt đầu chuẩn bị bột cho những chiếc bánh hiện nay nổi tiếng của mình, được làm hoàn toàn bằng tay. Hình dáng mập và có màu nâu nhạt ở bên ngoài, nó là thí dụ điển hình của một baguette Paris thực sự phải như thế nào.</p><p>Nhưng anh giữ bí quyết làm baguette hoàn hảo của mình.</p><p>\"Tôi sẽ không nói,\" M\'Seddi nói với nụ cười gượng gạo.</p><p>Theo Sami Bouattour, người chiến thắng năm 2017, sự hoàn hảo của baguette cũng khó nắm bắt như sự thể hiện của M\'Seddi.</p><p>\"Khi tôi ở ban giám khảo,\" Bouattour nói, \"thật dễ dàng để chọn được 10 hoặc 20 baguette nổi trội nhất. Nhưng sau đó, khi bạn so sánh số 3 và số 8, thì sự khác biệt là rất nhỏ.\"</p><p>Đối với M\'Seddi, phép thuật khiến chiếc baguette của anh ta nổi bật lên so với hàng tỷ chiếc khác được tiêu thụ ở Pháp mỗi năm thì rất đơn giản: đó là niềm đam mê.</p><p>\"Bạn có thể có chính xác cùng một công thức,\" ông nói. \"Và nếu một người đam mê hơn người kia, người đó sẽ có kết quả tốt hơn. Cho dù khi bạn đã thực hiện đúng như thế, nó cũng không như nhau. Nó giống như ma thuật.\"</p><p>M\'Seddi được quyền đặt một decal (hình in bóc) vàng lớn lên cửa sổ tiệm bánh của mình để quảng cáo vị thế là một nhà vô địch về baguette. Nhưng đó chưa phải là tất cả. Người chiến thắng mỗi năm cũng được vinh dự cung cấp cho tổng thống Pháp bánh mì hàng ngày của mình - một đặc quyền mà M\'Seddi tự hào chia sẻ với công chúng qua video trên truyền thông xã hội về thói quen sáng sớm của mình mang một giỏ baguette tươi tới cung điện Elysée rộng lớn.</p><p>Emmanuel Macron hiển nhiên là rất đam mê di sản làm bánh mỳ của nước Pháp: năm 2018, tổng thống đề nghị baguette Pháp được công nhận Di Sản Văn Hóa Phi Vật Thể Của Unesco. Pizza của Neapolitan, bánh gừng Croatia và bánh mì dẹt từ Trung Á đã xuất hiện trên danh sách của Unesco. Nhưng theo Macron, thì \"baguette là sự thèm muốn của cả thế giới\".</p>', '2023-11-17'),
+(3, 'tt3.jpg', 'Đà Nẵng có những món bánh ngọt siêu xinh khiến bạn phải thốt lên', 'Tart táo', 'Bánh ngọt bình thường vốn đã có vẻ xinh xắn khó tả rồi, tuy nhiên có những món bánh được chăm chút tỉ mỉ hơn, khiến ai nhìn vào cũng không nỡ ăn. Sài Gòn có những phiên bản', '<p>Bánh tart táo là món ăn phổ biến có ở nhiều nơi, bởi vì táo là loại trái cây được ưa chuộng trong các món bánh ngọt phương Tây ví dụ như bánh pie, bánh tart... Thế nhưng Sài Gòn có một tiệm bánh Pháp nhỏ với món tart táo với những miếng táo được xắt mỏng tinh tế, xếp lại cùng nhau trông như một đoá hồng nở rộ. Phía trên được quét thêm một lớp mật mỏng bóng bẩy, trông chiếc bánh nhỏ giống như một bông hoa xinh xắn ngon miệng.</p>', '2023-11-16');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `users`
+--
+
+CREATE TABLE `users` (
+  `iduser` int(11) NOT NULL,
+  `hoten` varchar(200) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `matkhau` varchar(50) NOT NULL,
+  `sdt` varchar(20) NOT NULL,
+  `diachi` varchar(200) NOT NULL,
+  `role` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `users`
+--
+
+INSERT INTO `users` (`iduser`, `hoten`, `email`, `matkhau`, `sdt`, `diachi`, `role`) VALUES
+(1, 'Phuong', 'pnt123@gmail.com', '123456', '0123756842', '', 'admin'),
+(2, 'Minh Tú', 'minhtu@gmail.com', 'minhtu', '0975648721', '', 'thanhvien'),
+(3, 'Linh Chi', 'linhchi231@gmail.com', 'linhchi231', '0379546823', '', 'thanhvien'),
+(4, 'Trung Hiếu', 'ttth20@gmail.com', 'trunghieu202', '0876542864', '278 Ngũ Hành Sơn', 'thanhvien'),
+(5, 'Trà My', 'tramy356@gmail.com', 'tramy356', '0647583457', '102 Núi Thành, Hải Châu', 'thanhvien'),
+(6, 'Kim Anh', 'kimanh593@gmail.com', 'kimanh593', '0975137546', '', 'thanhvien'),
+(7, 'Quỳnh Như', 'quynhu325@gmail.com', 'quynhu325', '0345872469', '', 'thanhvien'),
+(8, 'Khánh Nam', 'khahnam26_8@gmail.com', 'khanhnam268', '0947324819', '', 'thanhvien'),
+(9, 'Đức đz', 'vanducdz@gmail.com', 'vanducdz', '0355091787', '', 'thanhvien'),
+(10, 'Phương Phương', 'ppp298@gmail.com', 'ppp298', '0647981547', '', 'thanhvien'),
+(11, 'Thanh Phương', 'ptt_356@gmail.com', 'ptt356', '0874687239', '', 'thanhvien'),
+(12, 'Tấn Đạt', 'tandat231@gmail.com', 'tandat231', '0734556472', '', 'thanhvien'),
+(14, 'Thanh Phương', 'pnn123@gmail.com', 'pnn123', '0975647259', '56 Ngũ Hành Sơn', 'thanhvien'),
+(15, 'Thanh Phương', 'pnt867@gmail.com', 'pnt867', '0678452469', '45 Ngũ Hành Sơn', 'thanhvien'),
+(16, 'Trần Hường', 'tranhuong456@gmail.com', 'tranhuong', '0758642893', '', 'thanhvien'),
+(17, 'Ngọc Linh', 'ngocling254@gmail.com', 'ngoclinh', '0354984352', '', 'thanhvien'),
+(54, 'Phương Thảo', 'pthao27@gmail.com', 'pthao27', '0678945483', '', 'thanhvien'),
+(56, 'Bảo Nhật', 'bnhat11@gmail.com', 'bnhat11', '0975612486', '', 'thanhvien'),
+(57, 'Châu Giang', 'chaugiang123@gmail.com', 'chaugiang', '0975648326', '', 'thanhvien'),
+(58, 'Titi', 'titi123@gmail.com', 'titi123', '0573592857', '', 'thanhvien');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD PRIMARY KEY (`idbl`),
+  ADD KEY `FK_binhluan_users` (`iduser`),
+  ADD KEY `FK_binhluan_sanpham` (`idsp`);
+
+--
+-- Chỉ mục cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `iduser` (`iduser`),
+  ADD KEY `FK_cart_sanpham` (`idsp`);
+
+--
+-- Chỉ mục cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  ADD PRIMARY KEY (`idctdh`),
+  ADD KEY `FK_chitietdonhang_donhang` (`iddh`),
+  ADD KEY `FK_chitietdonhang_sanpham` (`idsp`);
+
+--
+-- Chỉ mục cho bảng `danhmuc`
+--
+ALTER TABLE `danhmuc`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `donhang`
+--
+ALTER TABLE `donhang`
+  ADD PRIMARY KEY (`iddh`),
+  ADD KEY `FK_donhang_users` (`iduser`);
+
+--
+-- Chỉ mục cho bảng `phanhoi`
+--
+ALTER TABLE `phanhoi`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_phanhoi_users` (`iduser`);
+
+--
+-- Chỉ mục cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_sanpham_danhmuc` (`iddanhmuc`);
+
+--
+-- Chỉ mục cho bảng `tintuc`
+--
+ALTER TABLE `tintuc`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Chỉ mục cho bảng `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`iduser`);
+
+--
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  MODIFY `idbl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT cho bảng `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
+
+--
+-- AUTO_INCREMENT cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  MODIFY `idctdh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
+--
+-- AUTO_INCREMENT cho bảng `donhang`
+--
+ALTER TABLE `donhang`
+  MODIFY `iddh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+
+--
+-- AUTO_INCREMENT cho bảng `phanhoi`
+--
+ALTER TABLE `phanhoi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT cho bảng `tintuc`
+--
+ALTER TABLE `tintuc`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT cho bảng `users`
+--
+ALTER TABLE `users`
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `binhluan`
+--
+ALTER TABLE `binhluan`
+  ADD CONSTRAINT `FK_binhluan_sanpham` FOREIGN KEY (`idsp`) REFERENCES `sanpham` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_binhluan_users` FOREIGN KEY (`iduser`) REFERENCES `users` (`iduser`);
+
+--
+-- Các ràng buộc cho bảng `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `FK_cart_sanpham` FOREIGN KEY (`idsp`) REFERENCES `sanpham` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `users` (`iduser`);
+
+--
+-- Các ràng buộc cho bảng `chitietdonhang`
+--
+ALTER TABLE `chitietdonhang`
+  ADD CONSTRAINT `FK_chitietdonhang_donhang` FOREIGN KEY (`iddh`) REFERENCES `donhang` (`iddh`),
+  ADD CONSTRAINT `FK_chitietdonhang_sanpham` FOREIGN KEY (`idsp`) REFERENCES `sanpham` (`id`);
+
+--
+-- Các ràng buộc cho bảng `donhang`
+--
+ALTER TABLE `donhang`
+  ADD CONSTRAINT `FK_donhang_users` FOREIGN KEY (`iduser`) REFERENCES `users` (`iduser`);
+
+--
+-- Các ràng buộc cho bảng `phanhoi`
+--
+ALTER TABLE `phanhoi`
+  ADD CONSTRAINT `FK_phanhoi_users` FOREIGN KEY (`iduser`) REFERENCES `users` (`iduser`);
+
+--
+-- Các ràng buộc cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD CONSTRAINT `FK_sanpham_danhmuc` FOREIGN KEY (`iddanhmuc`) REFERENCES `danhmuc` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
